@@ -1,0 +1,23 @@
+html{
+    background-color: var(--branco);
+    color: var(--preto);
+}
+
+body{
+    color: var(--preto);
+}
+
+div{
+    color: var(--preto);
+    width:50%;
+}
+
+h1{
+    color: var(--preto);
+    width:50%;
+}
+
+li{
+    color: var(--preto);
+    list-style:none;
+}
