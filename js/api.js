@@ -1,4 +1,5 @@
-const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio-production-c90144d0-937e-11ee-bad3-c399e8060022/objects?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&props=slug,title,metadata,type,";
+//API HOMEPAGE
+const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio/objects?pretty=true&query=%7B%22type%22%3A%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&props=slug%2Ctitle%2Cmetadata%2Cid%2Ctype&sort=-order";
 let projectsData
 
 async function fetchApi(apiUrl) {
@@ -29,26 +30,23 @@ function displayProjects(data) {
         //console.log(project_number); // Exibir o índice no console
 
         link.setAttribute('id', 'img' + project_number); // Definir o índice como ID
-        link.href = `project.html?id=${index}` //cria uma página em que o projeto é igual ao index
+        link.href = `project.html?id=${project.id}` //cria uma página em que o projeto é igual ao index
         img_projects.setAttribute('src', project.metadata.cover_image.url); // Definir a imagem
-
 
         if(project.metadata.carroussel == null){
             console.log("Não há imagens disponível para este projeto")
         }else{
             img_projects.onmouseover = function(){
                  //verifica o número do projeto hovered 
-                console.log(project.metadata.carroussel);
+                //console.log(project.metadata.carroussel);
     
                 //inicializa o carroussel
-                startCarousel(project.metadata.carroussel, project.title);
-    
-                //startCarousel(project_number);
+                startCarousel(project.metadata.carroussel, project.title, link);
             }
 
             img_projects.onmouseout = function(){
-                console.log("fora da imagem")
-                stopCarousel();
+                //console.log("fora da imagem")
+                stopCarousel(link);
             }
         }
         container.appendChild(link);

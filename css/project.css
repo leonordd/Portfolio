@@ -1,23 +1,127 @@
-html{
+html {
     background-color: var(--branco);
     color: var(--preto);
 }
 
-body{
+body {
     color: var(--preto);
+    overflow: initial;
+}
+
+h2 {
+    color: var(--preto);
+    margin-top:48px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+h2:first-child{
+   margin-top:0;
+}
+
+p {
+    color: var(--preto);
+    font-size: 1.3rem;
 }
 
 div{
     color: var(--preto);
-    width:50%;
-}
-
-h1{
-    color: var(--preto);
-    width:50%;
 }
 
 li{
     color: var(--preto);
     list-style:none;
+}
+
+/*Cruz para voltar atrás*/
+#back_div{
+    position:fixed;
+    top: 40px;
+    left: 80px;
+  
+}
+#back_div img{
+    width:100%;
+}
+
+/*conteudo total*/
+#content{
+    padding:6.05% 10.4%;
+}
+
+/*header cabeçalho*/
+#header{
+    display: flex;
+    justify-content: space-between;
+}
+
+#project_title{
+    color: var(--preto);
+    display:inline;
+}
+
+#tags_container{ 
+    align-self: center;
+}
+
+#tags_container ul{
+    display:flex;
+    flex-direction: row;
+    gap: 32px;
+    align-content:flex-end;
+}
+
+/*Main content*/
+#main_content{
+    display: grid;
+    grid-template-columns: 46% 46%;
+    column-gap: 8%;
+    margin-top:48px;
+}
+
+#project_images{
+    align-self: center;
+}
+
+#project_images > img{
+    width:100%;
+}
+
+#footer{
+    margin-top:48px;
+}
+/*footer*/
+#footer{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#author_names ul{
+    display:flex;
+    flex-direction: row;
+    gap: 32px;
+    align-content:flex-end;
+}
+
+#external_link{
+    background: var(--preto);
+    padding:12px 14px;
+    border-radius: 100px;
+    position:relative;
+}
+
+#external_link:hover{
+    background: var(--rosa);
+    transition: all 0.5s;
+}
+
+#back_div svg:hover{
+    stroke: var(--amarelo);
+}
+
+.cursor{
+    background-color: var(--preto);
 }

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="css/geral.css" rel="stylesheet">
     <link href="css/project.css" rel="stylesheet">
+    <link href="css/tooltip.css" rel="stylesheet">
    <!-- <link href="css/contacts.css" rel="stylesheet">-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,18 +19,37 @@
 </head>
 <body>
     <main>
-        <h1>CICLO DE CONVERSAS DESIGN + MULTIMÉDIA</h1>
-        <ul>
-            <li>tag1</li>
-            <li>tag2</li>
-            <li>tag3</li>
-        </ul>
-
-        <div>
-            Este projeto consistia no desenvolvimento da Identidade Visual do evento CCDM, dando ênfase  ao digital. Para resolver o enunciado projetámos uma tipografia generativa que ganha forma em ambientes digitais como a web. Cada letra é construída sobre uma circunferência e, através da ligação de pontos nela definidos, criam-se linhas que originam a forma final. Cada um desses pontos varia entre duas a três unidades de maneira a criar diferentes formas para cada letra. Este projeto foi escolhido como imagem visual da edição 2023 do Ciclo (CCDM).
+        <div id="cursor" class="cursor"></div>
+        <div id=back_div>
+            <a href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" overflow="visible" stroke="black" stroke-width="8" stroke-linecap="round">
+                    <line x2="40" y2="40" />
+                    <line x1="40" y2="40" />
+                 </svg>
+            </a>
         </div>
+        <div id="content">
+            <div id="header">
+                <h1 id="project_title">*</h1>
+                <div id="tags_container"></div>
+            </div>
 
-        <img src="" width="" height="" alt="projeto">
+            <div id="main_content">
+                <div id="project_text">*</div>
+                <div id="project_images" class="box"></div>
+            </div>
+            
+            <div id="footer">
+                <div id="author_names">Author(s)</div>
+                <!--<a id="external_link" href="" class="tooltip">
+                    <img alt="external website link" src="data/icons/external_link.svg" width="23.41" height="23.41">
+                    <span class="tooltiptext">Website Link</span>
+                </a>-->
+            </div>
+        </div>
     </main>
+    <script src="js/carroussel_project.js"></script>
+    <script src="js/project.js"></script>
+    <script src="js/cursor.js"></script>
 </body>
 </html>
