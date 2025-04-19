@@ -15,6 +15,7 @@
     font-family: 'Avenir', sans-serif;
     --titulos:3rem;
     color: var(--branco);
+    cursor: none;
 }
 
 body{
@@ -33,6 +34,35 @@ main{
     position:relative; 
     max-height:100vh;
     width:100%;
+}
+
+.cursor {
+    /*The position is fixed so it can stay on screen
+    even when scrolling*/
+        position: fixed;
+        width: 20px; 
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--branco);
+    /*To put it on the center of the cursor*/
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+       /* So the JS can work properly*/
+        pointer-events: none;
+        z-index: 100;
+}
+
+.square {
+    border-radius: 0;
+    background-color: var(--amarelo);
+    animation: 1s infinite running rotation;
+    transform: rotate(0);
+}
+  
+@keyframes rotation {
+   to {
+      transform: rotate(360deg);
+    }
 }
 
 h1{
