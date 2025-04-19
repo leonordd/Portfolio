@@ -88,7 +88,7 @@ function displayProject(data) {
     }
 
     if(data.metadata.live_url !== null){
-        const footer = document.getElementById('footer')
+        const nome_link = document.getElementById('nome_link')
 
         //external link
         const external_link = document.createElement('a');
@@ -101,15 +101,15 @@ function displayProject(data) {
         const imagem = document.createElement('img')
         imagem.alt = 'external website link';
         imagem.src = 'data/icons/external_link.svg';
-        imagem.width = '23.41';
-        imagem.height = '23.41';
+        imagem.width = '24';
+        imagem.height = '24';
 
         //tooltip text
         const tooltiptext = document.createElement('span');
         tooltiptext.classList.add("tooltiptext");
         tooltiptext.innerText = "Website Link"
 
-        footer.appendChild(external_link);
+        nome_link.appendChild(external_link);
         external_link.appendChild(imagem);
         external_link.appendChild(tooltiptext);
     }

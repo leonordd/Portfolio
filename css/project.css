@@ -57,6 +57,12 @@ li{
     justify-content: space-between;
 }
 
+#nome_link{ 
+    display: flex;
+    gap: 28px;
+    max-width: 50%;
+}
+
 #project_title{
     color: var(--preto);
     display:inline;
@@ -89,11 +95,9 @@ li{
     width:100%;
 }
 
-#footer{
-    margin-top:48px;
-}
 /*footer*/
 #footer{
+    margin-top:48px;
     display:flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -102,15 +106,20 @@ li{
 #author_names ul{
     display:flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 8px 24px;
     align-content:flex-end;
+    max-width:50%;
+    flex-wrap: wrap;
 }
 
 #external_link{
     background: var(--preto);
-    padding:12px 14px;
+    padding:14px 14px;
+    height: 54px;
+    width: 54px;
     border-radius: 100px;
     position:relative;
+    align-self: flex-end;
 }
 
 #external_link:hover{
@@ -118,10 +127,22 @@ li{
     transition: all 0.5s;
 }
 
+/*#external_link img{
+    transform: translateY(4px);
+}*/
+
 #back_div svg:hover{
     stroke: var(--amarelo);
 }
 
 .cursor{
     background-color: var(--preto);
+}
+
+#author_names b {
+    color: var(--preto);
+}
+
+#author_names ul{
+    margin-top: 10px;
 }

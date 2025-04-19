@@ -26,5 +26,5 @@
 
   .tooltip .tooltiptext {
     top: -5px;
-    right: 105%;
+    left: 105%;
   }
