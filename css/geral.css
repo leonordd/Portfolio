@@ -58,6 +58,10 @@ main{
     animation: 1s infinite running rotation;
     transform: rotate(0);
 }
+
+.imgs img{
+    width:100%;
+}
   
 @keyframes rotation {
    to {
