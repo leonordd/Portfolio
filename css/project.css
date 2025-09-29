@@ -9,7 +9,8 @@ body {
 }
 
 h1{
- font-size: 2.6rem;
+    font-size: 2.6rem;
+    /*line-height: 1.8;*/
 }
 
 h2 {
@@ -42,10 +43,15 @@ li{
 /*Cruz para voltar atrás*/
 #back_div{
     position:fixed;
-    top: 40px;
-    left: 80px;
-  
+    left: 3.2%;
+    z-index: 5;
 }
+
+#back_div svg{
+    width:35px;
+    height:35px;
+}
+
 #back_div img{
     width:100%;
 }
@@ -56,7 +62,18 @@ li{
 }
 
 /*header cabeçalho*/
+#head{
+    width:100%;
+    position: fixed;
+    padding:4% 6% 2% 8%;
+    top:0;
+    left:0;
+    z-index: 1;
+    /*background-color: var(--branco);*/
+}
+
 #header{
+    width:100%;
     display: flex;
     justify-content: space-between;
 }
@@ -70,6 +87,7 @@ li{
 #project_title{
     color: var(--preto);
     display:inline;
+    /*background-color: var(--branco);*/
 }
 
 #tags_container{ 
@@ -81,23 +99,48 @@ li{
     flex-direction: row;
     gap: 32px;
     align-content:flex-end;
+    text-align: center;;
 }
+
+#tags_container li{
+    background-color: var(--branco);
+    border: 1px solid var(--preto);
+    padding:8px 20px;
+    border-radius: 100px;
+}
+
 
 /*Main content*/
 #main_content{
     display: grid;
     grid-template-columns: 46% 46%;
     column-gap: 8%;
-    margin-top:48px;
+    margin-top:150px;
 }
 
 #project_images{
     align-self: center;
 }
 
-#project_images > img{
+#project_images img{
     width:100%;
 }
+
+#project_images img,
+#extra_images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+#extra_images {
+  margin-top: 40px; /* espaço em relação ao texto */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 
 /*footer*/
 #footer{
@@ -119,11 +162,12 @@ li{
 #external_link{
     background: var(--preto);
     padding:14px 14px;
+    margin:10px;
     height: 54px;
     width: 54px;
     border-radius: 100px;
     position:relative;
-    align-self: flex-end;
+    align-self: center;
 }
 
 #external_link:hover{
@@ -151,8 +195,47 @@ li{
     margin-top: 10px;
 }
 
+.project-image img{
+   width:auto;
+}
+
+main{
+    max-height:max-content;
+}
+
+footer{
+    border-top: 1.5px solid var(--preto);
+    padding: 3.125% 8% 3.125% 8%;
+}
+
+#footer_content{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+
+}
+
+#footer_right{
+    align-items: flex-end;
+}
+
+#footer_left{
+    align-items: flex-start;
+}
+
+#footer_left a{
+    color: var(--preto);
+    margin-left:10px;
+    /*font-weight: 700;*/
+}
+
+#footer_left a:hover{
+    color: var(--rosa);
+}
+
 
 @media screen and  (max-width: 1000px){
+
     #main_content{
         grid-template-columns: 1fr;
     }

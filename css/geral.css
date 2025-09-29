@@ -6,6 +6,7 @@
     /*COLORS*/
     --preto: #141414;
     --branco: #FFFFFF;
+    --brancoOpacity: #FFFFFF80;
     --rosa: #FA00FF;
     --amarelo: #FFFF00;
     --cyan: #00D1FF;
@@ -131,6 +132,9 @@ ul{
 #work:hover, #about:hover, #contacts:hover{
     color:var(--amarelo);
 }
+
+#switcher { display: flex; gap: 10px; margin-bottom: 20px;}
+#switcher button { padding: 6px 12px; cursor: pointer; border: 1px solid #ccc; background: #000; }
 
 
 @media screen and  (min-width: 600px){

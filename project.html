@@ -20,25 +20,29 @@
 <body>
     <main>
         <div id="cursor" class="cursor"></div>
-        <div id=back_div>
-            <a href="index.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" overflow="visible" stroke="black" stroke-width="8" stroke-linecap="round">
-                    <line x2="40" y2="40" />
-                    <line x1="40" y2="40" />
-                 </svg>
-            </a>
-        </div>
         <div id="content">
-            <div id="header">
+            <div id="head">
+                <div id=back_div>
+                    <a href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" overflow="visible" stroke="black" stroke-width="8" stroke-linecap="round">
+                            <line x2="40" y2="40" />
+                            <line x1="40" y2="40" />
+                        </svg>
+                    </a>
+                </div>
+                <div id="header" class="head">
                 <div id="nome_link">
-                    <h1 id="project_title">*</h1>
+                    <h1 id="project_title">.</h1>
                 </div>
                 <div id="tags_container"></div>
+            </div>
             </div>
 
             <div id="main_content">
                 <div id="project_text"></div>
-                <div id="project_images" class="box"></div>
+                <div id="project_images" class="box">
+
+                </div>
             </div>
             
             <div id="footer">
@@ -50,6 +54,20 @@
             </div>
         </div>
     </main>
+    <footer>
+        <div id="footer_content">
+            <div id="footer_left">
+                <a href="index.html" data-i18n="projetos">.</a>
+                <a href="contacts.html" data-i18n="contactos">.</a>
+                <a href="about.html" data-i18n="sobre">.</a>
+            </div>
+            <div id="footer_right">
+                <p>© Leonor Diniz 2025</p>
+            </div>
+    </footer>
+    <script src="js/helper.js"></script>
+    <script src="js/dic.js"></script>
+      <script src="js/geral.js"></script>
     <script src="js/carroussel_project.js"></script>
     <script src="js/project.js"></script>
     <script src="js/cursor.js"></script>

@@ -26,8 +26,8 @@
     </header>
 
     <div class="content">
-        <h3>Adorova conhecê-lo(a)</h3>
-        <h2>CONTACTE-ME!</h2>
+        <h3 data-i18n="frase_contactos">Adorova conhecê-lo(a)</h3>
+        <h2 data-i18n="contacte_me">CONTACTE-ME!</h2>
         <!--<img src="data/contacts/seta.svg" alt="seta de direção">-->
         <ul class="social">
             <li id="linkedin">
@@ -64,14 +64,25 @@
     </div>
 
     <nav>
+        <div id="switcher">
+            <div id="lang_pt">PT</div>
+            <div id="lang_en">ENG</div>
+        </div>
+        <br>
+
         <ul class="navegacao">
-            <li><a href="index.html" id="work">PROJETOS</a></li>
-            <li><a href="about.html" id="about">SOBRE</a></li>
-            <li><a href="contacts.html" id="contacts">CONTACTOS</a></li>
+            <li><a href="index.html" id="work" data-i18n="projetos">PROJETOS</a></li>
+            <li><a href="about.html" id="about" data-i18n="sobre">SOBRE</a></li>
+            <li><a href="contacts.html" id="contacts" data-i18n="contactos">CONTACTOS</a></li>
         </ul>
     </nav>
 </main>
 <div class="box"></div>
 </body>
+
+<script src="js/helper.js"></script>
+  <script src="js/dic.js"></script>
+  <script src="js/geral.js"></script>
+
 <script src="js/cursor.js"></script>
 </html>

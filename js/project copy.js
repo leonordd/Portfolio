@@ -6,18 +6,11 @@ const READ_KEY = '830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ';
 const urlParams = new URLSearchParams(window.location.search);
 const projectId = urlParams.get('id');
 //console.log(projectId);
-//let projectsData;
-
-let currentLocale = getLocale();
-setLocale(currentLocale);
-setUrlLang(currentLocale);
-// garante que a própria página tem ?lang=
-preserveLangOnLinks(currentLocale); // faz com que todos os <a> internos levem ?lang=
-
-
 
 const PROJECTS_URL = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects/${projectId}?read_key=${READ_KEY}&depth=1&props=slug%2Ctitle%2Cmetadata%2Cid%2Ctype&sort=-order`;
 console.log(PROJECTS_URL);
+
+//let projectsData;
 
 
 async function fetchApi(apiUrl) {
@@ -188,121 +181,7 @@ function displayProject(data) {
 
 }
 
-
-//
-// -- helpers de normalização (podes pôr no topo junto aos outros) --
-function canonicalLocale(x) {
-  if (!x) return '';
-  const v = String(x).trim().toLowerCase();
-  if (['en','eng','en-gb','en_us','en-us','en_uk','en-uk'].includes(v)) return 'en';
-  if (['pt','pt-pt','pt_br','pt-br'].includes(v)) return 'pt';
-  return v;
-}
-function normLocale(metaLocale) {
-  if (metaLocale == null) return '';
-  if (typeof metaLocale === 'string') return canonicalLocale(metaLocale);
-  if (typeof metaLocale === 'object' && 'value' in metaLocale) return canonicalLocale(metaLocale.value);
-  if (Array.isArray(metaLocale)) {
-    for (const it of metaLocale) {
-      const v = typeof it === 'string' ? it : (it && 'value' in it ? it.value : '');
-      const n = canonicalLocale(v);
-      if (n === 'pt' || n === 'en') return n;
-    }
-  }
-  return canonicalLocale(metaLocale);
-}
-
-// -- SUBSTITUIR pelas tuas versões --
-async function fetchAltByTranslationKey(translationKey, localeWanted, objType) {
-  if (!translationKey) return null;
-
-  const base = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
-               `?read_key=${READ_KEY}&depth=1&props=slug,title,content,metadata,id,type`;
-
-  // tentativas de query (mais robustas, por ordem)
-  const tries = [
-    // 1) nested metadata (locale simples)
-    {
-      type: objType || 'works',
-      metadata: { translation_key: translationKey, locale: localeWanted }
-    },
-    // 2) nested metadata com locale.value (para campo Select)
-    {
-      type: objType || 'works',
-      metadata: { translation_key: translationKey, "locale.value": localeWanted }
-    },
-    // 3) dot-notation
-    {
-      type: objType || 'works',
-      "metadata.translation_key": translationKey,
-      "metadata.locale": localeWanted
-    },
-    // 4) dot-notation para locale.value
-    {
-      type: objType || 'works',
-      "metadata.translation_key": translationKey,
-      "metadata.locale.value": localeWanted
-    }
-  ];
-
-  for (const q of tries) {
-    const url = `${base}&query=${encodeURIComponent(JSON.stringify(q))}`;
-    const res = await fetch(url);
-    if (!res.ok) continue;
-    const json = await res.json();
-    const found = (json.objects && json.objects[0]) || null;
-    if (found) return found;
-  }
-  return null;
-}
-
-async function ensureLocale(obj, localeWanted) {
-  if (!obj) return null;
-  const wanted = canonicalLocale(localeWanted);
-  const have   = normLocale(obj?.metadata?.locale);
-  const tk     = obj?.metadata?.translation_key;
-
-  // Se o ID é de outra língua, tenta a variante
-  if (tk && have !== wanted) {
-    const alt = await fetchAltByTranslationKey(tk, wanted, obj?.type);
-    if (alt) return alt;
-  }
-  return obj;
-}
-
-
-
 (async () => {
-  try {
-    applyTranslations(currentLocale); // logo ao entrar
-    let projectData = await fetchApi(PROJECTS_URL);
-    // ✅ se o ID não for da língua desejada, troca para a variante
-    projectData = await ensureLocale(projectData, currentLocale);
-    displayProject(projectData);
-  } catch (err) {
-    console.error(err);
-  }
-})();
-
-btnPT.onclick = async () => {
-  currentLocale = 'pt';
-  setLocale(currentLocale);
-  setUrlLang(currentLocale);
-  applyTranslations(currentLocale);       // <-- traduz os textos fixos
-  displayProjects(await fetchApiList(currentLocale));
-};
-
-btnEN.onclick = async () => {
-  currentLocale = 'en';
-  setLocale(currentLocale);
-  setUrlLang(currentLocale);
-  applyTranslations(currentLocale);
-  displayProjects(await fetchApiList(currentLocale));
-};
-
-
-
-/*(async () => {
     try {
         let projectsData = await fetchApi(PROJECTS_URL);
         //console.log(projectsData);
@@ -311,4 +190,4 @@ btnEN.onclick = async () => {
         console.error('Fetching error:', error);
         throw error;
     }
-})();*/
+})();
