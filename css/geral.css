@@ -41,6 +41,8 @@ main{
     /*The position is fixed so it can stay on screen
     even when scrolling*/
         position: fixed;
+        top:-5%;
+        left:-5%;
         width: 20px; 
         height: 20px;
         border-radius: 50%;
@@ -63,28 +65,65 @@ main{
 .imgs img{
     width:100%;
 }
-  
+
+h1{
+    font-family: 'Unbounded', sans-serif;
+    display:inline-block;
+    position:relative;
+}
+
+@media screen and (min-width: 1000px){
+    #language {
+        position:fixed;
+        left:3%;
+        top:4%;
+        z-index: 5;
+        margin-left: 10px;
+    }
+
+    h1{
+        font-size:2.8rem;
+    }
+}
+
+
+@media screen and (max-width: 1000px){
+    #language {
+        position:fixed;
+        left:2.32%;
+        bottom:20%;
+        margin-left:10px;
+    }
+
+    h1{
+        font-size:2rem;
+        width:80%;
+    }
+} 
+
+
+
+
 @keyframes rotation {
    to {
       transform: rotate(360deg);
     }
 }
 
-h1{
-    font-family: 'Unbounded', sans-serif;
-    font-size:2.8rem;
-    display:inline-block;
-    position:relative;
-}
-
 header{
-    width:50%;
-    text-align: right;
     position:fixed;
-    right:2.32%;
+    right:3%;
     top:3%;
+    text-align: right;
     z-index:100;
 } 
+
+header>div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
 
 nav {
     position:fixed;
@@ -133,38 +172,31 @@ ul{
     color:var(--amarelo);
 }
 
-#switcher { display: flex; gap: 10px; margin-bottom: 20px;}
+#switcher { display: flex; gap: 8px; z-index: 100;}
 #switcher button { padding: 6px 12px; cursor: pointer; border: 1px solid #ccc; background: #000; }
 
-
-@media screen and  (min-width: 600px){
-    #container{
-        display:grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-column-gap: 1.65%;
-    
-        grid-template-rows: repeat(8,1fr);
-        /*grid-row-gap: 3%;*/
-    
-        margin:2.32%;
-        height:90vh;
-        width:calc(100%-(2*2.32%));
-    } 
+#lang_pt, #lang_en {
+    color: var(--branco);
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 100px;
+    /*border: 1px solid var(--preto);*/
+    position: relative;
+    left:-10px;
 }
 
+#lang_pt:hover, #lang_en:hover {
+    color: var(--preto);
+    border: 1px solid var(--amarelo);
+    background-color: var(--amarelo);
+}
+
+.selected {
+    border: 1px solid var(--branco);
+}
+
+
 @media screen and (max-width: 600px){
-    #container{
-        display:grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-column-gap: 1.65%;
-    
-        grid-template-rows: repeat(12,1fr);
-        grid-row-gap: 1%;
-    
-        margin:8% 2.32%;
-        height:90vh;
-        width:calc(100%-(2*2.32%));
-    }
 
     nav {
         left:4%;
@@ -188,7 +220,11 @@ ul{
         padding:4% 0%;
     }
 
-    h1{
-        font-size:1.5rem;
+    #language {
+        position:fixed;
+        left:2.32%;
+        bottom:18%;
+        margin-left:15px;
     }
+
 }

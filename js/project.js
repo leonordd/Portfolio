@@ -99,32 +99,33 @@ function displayProject(data) {
         authorsContainer.appendChild(list_names);
     }
 
-    if(data.metadata.live_url !== null){
-        const nome_link = document.getElementById('nome_link')
+    if (data.metadata.live_url !== null) {
+    const nome_link = document.getElementById('nome_link')
 
-        //external link
-        const external_link = document.createElement('a');
-        external_link.id = 'external_link';
-        external_link.href = data.metadata.live_url; 
-        external_link.target = "_blank";
-        external_link.classList.add("tooltip");
+    // external link
+    const external_link = document.createElement('a');
+    external_link.id = 'external_link';
+    external_link.href = data.metadata.live_url; 
+    external_link.target = "_blank";
+    external_link.classList.add("tooltip");
 
-        //img
-        const imagem = document.createElement('img')
-        imagem.alt = 'external website link';
-        imagem.src = 'data/icons/external_link.svg';
-        imagem.width = '24';
-        imagem.height = '24';
+    // img
+    const imagem = document.createElement('img')
+    imagem.alt = 'external website link';
+    imagem.src = 'data/icons/external_link.svg';
+    imagem.width = '24';
+    imagem.height = '24';
 
-        //tooltip text
-        const tooltiptext = document.createElement('span');
-        tooltiptext.classList.add("tooltiptext");
-        tooltiptext.innerText = "Website Link"
+    // tooltip text
+    const tooltiptext = document.createElement('span');
+    tooltiptext.classList.add("tooltiptext");
+    tooltiptext.innerText = "Website Link";
 
-        nome_link.appendChild(external_link);
-        external_link.appendChild(imagem);
-        external_link.appendChild(tooltiptext);
-    }
+    nome_link.appendChild(external_link);
+    external_link.appendChild(imagem);
+    external_link.appendChild(tooltiptext);
+}
+
 
     //Imagens
     const projectImages = document.getElementById('project_images');

@@ -20,6 +20,7 @@
   // 4) ligar botões PT/EN se existirem na página
   const btnPT = document.getElementById('lang_pt');
   const btnEN = document.getElementById('lang_en');
+
   const onSwitch = (to) => {
     currentLocale = to;
     setLocale(currentLocale);
@@ -27,9 +28,22 @@
     if (typeof translations !== 'undefined') applyTranslations(currentLocale);
     if (typeof preserveLangOnLinks === 'function') preserveLangOnLinks(currentLocale);
 
+    syncLangSelected(currentLocale);
+    
     // Dispara um evento para scripts da página reagirem (ex.: refetch na index)
     document.dispatchEvent(new CustomEvent('lang:changed', { detail: { locale: currentLocale } }));
   };
+
+  const syncLangSelected = (locale) => {
+  const pt = document.getElementById('lang_pt');
+  const en = document.getElementById('lang_en');
+  [pt, en].forEach(el => el && el.classList.remove('selected'));
+  (locale === 'en' ? en : pt)?.classList.add('selected');
+};
+
+  // chamada inicial (respeita ?lang=... ou localStorage)
+  syncLangSelected(currentLocale);
+
   if (btnPT) btnPT.addEventListener('click', () => onSwitch('pt'));
   if (btnEN) btnEN.addEventListener('click', () => onSwitch('en'));
 })();

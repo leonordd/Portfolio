@@ -44,6 +44,7 @@ li{
 #back_div{
     position:fixed;
     left: 3.2%;
+    top:50px;
     z-index: 5;
 }
 
@@ -64,9 +65,8 @@ li{
 /*header cabeçalho*/
 #head{
     width:100%;
-    position: fixed;
-    padding:4% 6% 2% 8%;
-    top:0;
+    position: sticky;
+    top:60px;
     left:0;
     z-index: 1;
     /*background-color: var(--branco);*/
@@ -76,7 +76,11 @@ li{
     width:100%;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    gap:10px;
 }
+
+
 
 #nome_link{ 
     display: flex;
@@ -97,9 +101,9 @@ li{
 #tags_container ul{
     display:flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 1em;
     align-content:flex-end;
-    text-align: center;;
+    text-align: center;
 }
 
 #tags_container li{
@@ -115,7 +119,7 @@ li{
     display: grid;
     grid-template-columns: 46% 46%;
     column-gap: 8%;
-    margin-top:150px;
+    margin-top:50px;
 }
 
 #project_images{
@@ -212,11 +216,16 @@ footer{
     width:100%;
     display:flex;
     justify-content: space-between;
-
+    align-items: center;
 }
 
 #footer_right{
     align-items: flex-end;
+
+}
+#footer_right > p {
+    line-height:1.3rem;
+    font-size:1.1rem;
 }
 
 #footer_left{
@@ -234,6 +243,29 @@ footer{
 }
 
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0; /* posição normal */
+  background-color: black;
+  color: #fff;
+  padding: 5px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
 @media screen and  (max-width: 1000px){
 
     #main_content{
@@ -241,7 +273,7 @@ footer{
     }
 
     #content{
-        padding-top:150px;
+        padding-top:100px;
     }
 
     #project_images{
@@ -250,6 +282,10 @@ footer{
 
     #header{
         display:inline;
+    }
+
+    #head{
+        top:100px;
     }
     
     #tags_container{
@@ -276,5 +312,29 @@ footer{
         width:35px;
     }
 
+    /*#header{
+        position:fixed;
+        top:100px;
+        width:80%;
 
+    }*/
+
+    #header h1{
+        font-size:2.2rem;
+    }
+
+    .tooltiptext {
+        visibility: hidden;
+        position: absolute;
+        top: 100%;
+        left: 50%; /* posição normal */
+        transform: translate(-100%, -110%);
+        background-color: black;
+        color: #fff;
+        padding: 5px;
+        border-radius: 6px;
+        white-space: nowrap;
+        z-index: 1;
+    }
 }
+

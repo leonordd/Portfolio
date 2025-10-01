@@ -33,8 +33,8 @@ canvas{
         grid-template-rows: repeat(8,1fr);
         grid-row-gap: 3%;
     
-        margin:2.32%;
-        height:90vh;
+        padding:2.32%;
+        height:100vh;
         width:calc(100%-(2*2.32%));
     } 
 
@@ -105,17 +105,29 @@ canvas{
 @media screen and  (max-width: 600px){
 
     .cont{
-        display:grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-column-gap: 1.6%;
-    
-        grid-template-rows: repeat(auto-fill, minmax(calc(100%/12), 1fr));
-        grid-row-gap: 1%;
-    
-        margin:8% 2.32%;
-        height:90vh;
-        width:calc(100%-(2*2.32%));
+        box-sizing: border-box;
+        display: grid;
+
+        /* colunas e linhas com tamanho constante dentro de 100vh */
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        grid-template-rows:    repeat(14, minmax(0, 1fr));
+
+        /* usa px/vw/clamp para evitar sub-píxeis; % pode dar diferenças de 1px */
+        gap: 16px;
+
+        padding: 5% 5%;
+        width: 100%;
+        height: 100vh; /* 12 linhas dividem esta altura */
     }
+
+    /* impede que o conteúdo force a track a crescer */
+    .cont > *{
+        min-width: 0;
+        min-height: 0;   /* permite a track ficar menor que o min-content */
+        overflow: visible; /* o conteúdo pode “sair fora” do seu grid-area */
+    }
+
+
 
     #pal1{ /*jeKnowledge*/
         grid-column:1/4;
@@ -124,7 +136,7 @@ canvas{
 
     #pal2{ /*Lecas*/
         grid-column:1/2;
-        grid-row:9/10;
+        grid-row:8/10;
     }
 
     #pal3{ /*Dzain*/
@@ -144,7 +156,7 @@ canvas{
 
     #pal6{ /*Photography*/
         grid-column: 4/5;
-        grid-row:10/11;
+        grid-row:9/11;
     }
 
     #pal7{ /*Webdesign*/
@@ -158,22 +170,20 @@ canvas{
     }
 
     #img1{
-        grid-column: 6/10;
-        grid-row:7/11;
+        grid-column: 6/11;
+        grid-row:8/13;
+        width:80%;
     }
 
     #img2{
-        grid-column:2/6;
-        grid-row:2/6;
+        grid-column:2/7;
+        grid-row:3/6;
+        width:80%;
     }
 
     .cont img {
         width:100%;
         height:auto;
-    }
-    header{
-        background-color:var(--preto);
-        opacity:90%;
     }
     
     .tags{
