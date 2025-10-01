@@ -2,16 +2,17 @@
 const translations = {
   pt: {
     projetos: "PROJETOS",
-    sobre:    "SOBRE",
-    contactos:    "CONTACTOS",
+    sobre: "SOBRE",
+    contactos: "CONTACTOS",
     fotografia: "Fotografia",
     violoncelista: "Violoncelista",
      observadora: "Observadora",
      frase_contactos: "Adorova conhecê-lo(a) :)",
       contacte_me: "CONTACTE-ME!",
+      autores: "AUTORIA",
   },
   en: {
-    projetos: "PROJECTS",
+    projetos: "WORK",
     sobre:    "ABOUT",
     contactos:    "CONTACTS",
     fotografia: "Photography",
@@ -19,6 +20,7 @@ const translations = {
     observadora: "Observer",
     frase_contactos:"I'd love to meet you :)",
     contacte_me: "CONTACT ME!",
+    autores: "AUTHORS",
   }
 };
 

@@ -7,4 +7,5 @@ function moveCursor(e) {
   var y = e.clientY;
   cursor.style.left = `${x}px`;
   cursor.style.top = `${y}px`;
+  cursor.style.zIndex = 1000;
 }
