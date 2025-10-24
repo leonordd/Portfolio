@@ -55,7 +55,7 @@ function addSkeletons() {
 
   // autores (mantém o <b> AUTORIA se existir)
   const authors = document.getElementById('author_names');
-  if (authors) {
+  /*if (authors) {
     const label = authors.querySelector('b');
     authors.innerHTML = '';
     if (label) authors.appendChild(label);
@@ -67,7 +67,7 @@ function addSkeletons() {
     ln2.style.width = '40%';
     authors.appendChild(ln1);
     authors.appendChild(ln2);
-  }
+  }*/
 
   // imagens (3 rectângulos)
   const pics = document.getElementById('project_images');
