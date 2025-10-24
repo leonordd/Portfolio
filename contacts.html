@@ -31,6 +31,13 @@
         <h1 class="nome">Leonor Diniz</h1>     
     </header>
 
+    <div class="back_img_cont">
+        <img src="data/github.png" id="back_1" alt="linkedin Screenshot" width="" height="">
+        <img src="data/behance.png" id="back_2" alt="Behance Screenshot" width="" height="">
+        <img src="data/github.png" id="back_3" alt="github Screenshot" width="" height="">
+        <img src="data/instagram.png" id="back_4" alt="instagram Screenshot" width="" height="">
+    </div>
+
     <div id="contactos">
     <div class="content">
         <h3 data-i18n="frase_contactos">Adorova conhecê-lo(a)</h3>
@@ -85,6 +92,54 @@
 <script src="js/helper.js"></script>
   <script src="js/dic.js"></script>
   <script src="js/geral.js"></script>
+  <script>
+    back_1= document.getElementById("back_1");
+    linkedin= document.getElementById("linkedin");
+    
+    linkedin.addEventListener("mouseover", function(){
+        back_1.style = "opacity: 0.3;";
+    });
+    linkedin.addEventListener("mouseout", function(){
+        back_1.style = "opacity: 0;";
+        back_1.style = "transition: opacity 0.5s;";
+    });
 
+
+    //BEHANCE
+    back_2= document.getElementById("back_2");
+    behance= document.getElementById("behance");    
+
+    behance.addEventListener("mouseover", function(){
+        back_2.style = "opacity: 0.3;";
+    });
+    behance.addEventListener("mouseout", function(){
+        back_2.style = "opacity: 0;";
+        back_2.style = "transition: opacity 0.5s;";
+    });
+
+    //GITHUB
+    back_3= document.getElementById("back_3");
+    github= document.getElementById("github");              
+    github.addEventListener("mouseover", function(){
+        back_3.style = "opacity: 0.3;";
+    });
+    github.addEventListener("mouseout", function(){
+        back_3.style = "opacity: 0;";
+        back_3.style = "transition: opacity 0.5s;";
+    });
+
+    //INSTAGRAM
+    back_4= document.getElementById("back_4");
+    insta= document.getElementById("insta");              
+    insta.addEventListener("mouseover", function(){
+        back_4.style = "opacity: 0.3;";
+    });     
+    insta.addEventListener("mouseout", function(){
+        back_4.style = "opacity: 0;";
+        back_4.style = "transition: opacity 0.5s;";
+    });
+
+
+  </script>
 <script src="js/cursor.js"></script>
 </html>

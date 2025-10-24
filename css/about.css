@@ -24,6 +24,25 @@ canvas{
 }
 
 
+.cv{
+    display:inline;
+    color:var(--branco);
+    align-self: end;
+    border-radius:100px;
+    border: 1px solid var(--branco);
+    position:fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.cv:hover{
+    background-color:var(--amarelo);
+    color:var(--preto);
+    border: 1px solid var(--amarelo);
+}
+
 @media screen and  (min-width: 600px){
     .cont{
         display:grid;
@@ -94,7 +113,7 @@ canvas{
         height:auto;
     }
 
-    .tags{
+    .cv, .tags{
         font-size:1.125rem;
         font-weight:500;
         padding:18px 28px;
@@ -186,7 +205,7 @@ canvas{
         height:auto;
     }
     
-    .tags{
+    .cv, .tags{
         font-size:1rem;
         font-weight:500;
         padding:12px 20px;   
