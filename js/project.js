@@ -15,6 +15,81 @@ setUrlLang(currentLocale);
 preserveLangOnLinks(currentLocale); // faz com que todos os <a> internos levem ?lang=
 
 
+/* ===== Skeletons helpers ===== */
+function addSkeletons() {
+  const root = document.getElementById('content');
+  if (!root) return;
+  root.setAttribute('data-loading', '1');
+
+  // título
+  const h1 = document.getElementById('project_title');
+  if (h1) {
+    h1.innerHTML = '';
+    const sk = document.createElement('div');
+    sk.className = 'skeleton line';
+    sk.style.width = '55%';
+    h1.appendChild(sk);
+  }
+
+  // texto (5 linhas)
+  const text = document.getElementById('project_text');
+  if (text) {
+    text.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+      const ln = document.createElement('div');
+      ln.className = 'skeleton line' + (i === 4 ? ' sm' : '');
+      text.appendChild(ln);
+    }
+  }
+
+  // tags (3 chips)
+  const tags = document.getElementById('tags_container');
+  /*if (tags) {
+    tags.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+      const chip = document.createElement('span');
+      chip.className = 'skeleton chip';
+      tags.appendChild(chip);
+    }
+  }*/
+
+  // autores (mantém o <b> AUTORIA se existir)
+  const authors = document.getElementById('author_names');
+  if (authors) {
+    const label = authors.querySelector('b');
+    authors.innerHTML = '';
+    if (label) authors.appendChild(label);
+    const ln1 = document.createElement('div');
+    ln1.className = 'skeleton line sm';
+    ln1.style.width = '60%';
+    const ln2 = document.createElement('div');
+    ln2.className = 'skeleton line sm';
+    ln2.style.width = '40%';
+    authors.appendChild(ln1);
+    authors.appendChild(ln2);
+  }
+
+  // imagens (3 rectângulos)
+  const pics = document.getElementById('project_images');
+  if (pics) {
+    pics.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+      const rect = document.createElement('div');
+      rect.className = 'skeleton rect';
+      rect.style.marginBottom = '12px';
+      pics.appendChild(rect);
+    }
+  }
+}
+
+function clearSkeletons() {
+  const root = document.getElementById('content');
+  if (root) root.removeAttribute('data-loading');
+}
+
+addSkeletons();
+
+
 
 const PROJECTS_URL = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects/${projectId}?read_key=${READ_KEY}&depth=1&props=slug%2Ctitle%2Cmetadata%2Cid%2Ctype&sort=-order`;
 console.log(PROJECTS_URL);

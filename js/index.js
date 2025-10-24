@@ -74,8 +74,6 @@ async function fetchApiList(locale) {
 
 }
 
-
-
 /*function displayProjects(data) {
   let container = document.querySelector("#container");
   container.innerHTML = '';
