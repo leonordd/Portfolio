@@ -338,3 +338,89 @@ footer{
     }
 }
 
+
+
+
+
+/* ============================
+   Skeletons + Shimmer + Fade-in
+   ============================ */
+
+/* ativa skeletons enquanto #content tiver data-loading="1" */
+[data-loading="1"] .skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e3e3e3;             /* usa cinza claro neutro */
+  border-radius: 8px;
+}
+
+/* linhas de texto (parágrafos/título) */
+.skeleton.line { height: 1rem; margin: 0.5rem 0; }
+.skeleton.line.sm { height: 0.8rem; width: 70%; }
+
+/* “chips” para as tags */
+/*.skeleton.chip {
+  display: inline-block;
+  height: 1.6rem;
+  min-width: 5.5rem;
+  border-radius: 999px;
+  margin: 0 .5rem .5rem 0;
+}*/
+
+/* rectângulos para os slots de imagem da coluna direita */
+.skeleton.rect {
+  width: 100%;
+  /*aspect-ratio: 4/3;   */             /* ajusta à tua grelha de imagens */
+  margin-bottom: 12px;
+}
+
+/* shimmer (varrimento suave) */
+[data-loading="1"] .skeleton::after {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(227,227,227,0) 0%,
+    rgba(255,255,255,.7) 50%,
+    rgba(227,227,227,0) 100%
+  );
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+
+/* fade-in genérico para o conteúdo real */
+.fade-in { opacity: 0; transition: opacity 220ms ease; }
+.fade-in.ready { opacity: 1; }
+
+/* Acessibilidade: reduzir movimento */
+@media (prefers-reduced-motion: reduce) {
+  [data-loading="1"] .skeleton::after { animation: none; }
+  .fade-in { transition: none; }
+}
+
+/* ---- Integração com o teu layout existente ---- */
+
+/* título ocupa o seu espaço enquanto carrega */
+#project_title .line { width: 100%;}
+
+/* texto principal: deixa respirar e evita “saltos” */
+#project_text .line { width: 100%;}
+
+/* tags: alinhar com os teus chips reais */
+/*#tags_container .skeleton.chip {
+  background: var(--branco);        
+  border: 1px solid var(--preto);
+}*/
+
+/* autores: 2 linhas com larguras diferentes para parecer natural */
+/*#author_names .skeleton.line:nth-of-type(1) { width: 60%; }
+#author_names .skeleton.line:nth-of-type(2) { width: 40%; }
+
+/* imagens: já tens largura 100% em #project_images img,
+   aqui só garantimos o placeholder cheio e sem recortes estranhos */
+/*#project_images .skeleton.rect { background: #e3e3e3; }
+
+/* responsivo: nada especial, herda do teu @media */

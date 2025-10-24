@@ -74,9 +74,7 @@ async function fetchApiList(locale) {
 
 }
 
-
-
-function displayProjects(data) {
+/*function displayProjects(data) {
   let container = document.querySelector("#container");
   container.innerHTML = '';
 
@@ -107,7 +105,82 @@ function displayProjects(data) {
     link.appendChild(img_projects);
     container.appendChild(link);
   });
+}*/
+
+function displayProjects(data) {
+  const container = document.querySelector("#container");
+  container.innerHTML = '';
+
+  // Pré-carregamento (cache na memória por projeto)
+  const carouselCache = new Map();
+
+  // Preload no viewport
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        const link = e.target;
+        const project = link.__projectData;
+        if (project?.metadata?.carroussel && !carouselCache.has(project.id)) {
+          // cria Image() para cada URL e faz decode antecipado
+          const loaders = project.metadata.carroussel.map(({ url }) => {
+            const im = new Image();
+            im.decoding = 'async';
+            im.fetchPriority = 'low';
+            im.src = url;
+            return im.decode().catch(() => {}); // ignora falhas pontuais
+          });
+          Promise.allSettled(loaders).then(() => {
+            carouselCache.set(project.id, true);
+          });
+        }
+        io.unobserve(link);
+      }
+    }
+  }, { rootMargin: '200px' });
+
+  data.forEach((project, index) => {
+    const img_projects = document.createElement('img');
+    const link = document.createElement('a');
+    link.classList.add('imgs', 'img-wrapper');
+    link.id = 'img' + (index + 1);
+
+    const u = new URL('project.html', location.origin);
+    u.searchParams.set('lang', currentLocale);
+    u.searchParams.set('id', project.id);
+    link.href = u.toString();
+
+    // Covers mais eficientes
+    img_projects.src = project.metadata.cover_image.url;
+    img_projects.loading = 'lazy';
+    img_projects.decoding = 'async';
+    // prioridade alta só para os primeiros acima da dobra
+    img_projects.fetchPriority = index < 4 ? 'high' : 'low';
+    // se souberes a largura/altura, define:
+    // img_projects.width = 800; img_projects.height = 600;
+
+    // Guarda dados do projeto no link para o IO
+    link.__projectData = project;
+    io.observe(link);
+
+    // Carrossel on hover (mantém a tua lógica, só acrescentamos atraso anti-“flicker”)
+    let hoverTimer;
+    if (project.metadata.carroussel) {
+      img_projects.addEventListener('mouseenter', () => {
+        hoverTimer = setTimeout(() => {
+          startCarousel(project.metadata.carroussel, project.title, link);
+        }, 120); // pequeno atraso evita hovers acidentais
+      });
+      img_projects.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
+        stopCarousel(link);
+      });
+    }
+
+    link.appendChild(img_projects);
+    container.appendChild(link);
+  });
 }
+
 
 // —— Botões PT / ENG na home ——
 const btnPT = document.getElementById('lang_pt');
