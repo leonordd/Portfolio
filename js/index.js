@@ -141,11 +141,12 @@ function displayProjects(data) {
   data.forEach((project, index) => {
     const img_projects = document.createElement('img');
     const link = document.createElement('a');
+    const base = document.baseURI; // respeita <base href="/Portfolio/">
     link.classList.add('imgs', 'img-wrapper');
     link.id = 'img' + (index + 1);
 
-    const u = new URL('../html/project.html', location.origin);
-    u.searchParams.set('lang', currentLocale);
+    const u = new URL('html/project.html', base);
+    u.searchParams.set('lang', getLocale());
     u.searchParams.set('id', project.id);
     link.href = u.toString();
 
