@@ -33,16 +33,24 @@ function applyTranslations(locale) {
 
 function preserveLangOnLinks(lang) {
   const anchors = document.querySelectorAll('a[href]');
-  const origin = location.origin;
+  const base = document.baseURI; // respeita <base href="/Portfolio/">
+
   anchors.forEach(a => {
-    try {
-      const url = new URL(a.getAttribute('href'), origin);
-      if (url.origin !== origin) return;                 // externo
-      if (['mailto:', 'tel:'].includes(url.protocol)) return;
-      url.searchParams.set('lang', lang);
-      a.setAttribute('href', url.pathname + url.search + url.hash);
-    } catch (_) {}
+    const href = a.getAttribute('href');
+    // Ignora links externos/anchors/mailto/tel
+    if (!href || href.startsWith('http') || href.startsWith('mailto:') ||
+        href.startsWith('tel:') || href.startsWith('#')) return;
+
+    // Resolve o link relativo com base no <base>
+    const url = new URL(href, base);
+
+    // Garante que manténs o ?lang
+    url.searchParams.set('lang', lang);
+
+    // Escreve de volta sem perder o /Portfolio/
+    a.setAttribute('href', url.pathname + url.search + url.hash);
   });
 }
+
 
 
