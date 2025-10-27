@@ -144,7 +144,7 @@ function displayProjects(data) {
     link.classList.add('imgs', 'img-wrapper');
     link.id = 'img' + (index + 1);
 
-    const u = new URL('project.html', location.origin);
+    const u = new URL('../html/project.html', location.origin);
     u.searchParams.set('lang', currentLocale);
     u.searchParams.set('id', project.id);
     link.href = u.toString();

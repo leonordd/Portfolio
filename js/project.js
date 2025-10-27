@@ -187,7 +187,7 @@ function displayProject(data) {
     // img
     const imagem = document.createElement('img')
     imagem.alt = 'external website link';
-    imagem.src = 'data/icons/external_link.svg';
+    imagem.src = '../data/icons/external_link.svg';
     imagem.width = '24';
     imagem.height = '24';
 
