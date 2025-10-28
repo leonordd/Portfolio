@@ -293,8 +293,15 @@ function normLocale(metaLocale) {
 async function fetchAltByTranslationKey(translationKey, localeWanted, objType) {
   if (!translationKey) return null;
 
-  const base = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
-               `?read_key=${READ_KEY}&depth=1&props=slug,title,content,metadata,id,type`;
+  /*const base = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
+               `?read_key=${READ_KEY}&depth=1&props=slug,title,content,metadata,id,type`;*/
+  
+
+  const base =
+    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` + `?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&`+
+    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,type,`;
+
+
 
   // tentativas de query (mais robustas, por ordem)
   const tries = [

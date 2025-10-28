@@ -2,7 +2,7 @@
 const BUCKET = 'portfolio';
 const READ_KEY = '830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ';
 
-const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio/objects?pretty=true&query=%7B%22type%22%3A%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&props=slug%2Ctitle%2Cmetadata%2Cid%2Ctype&sort=-order";
+const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio/objects?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&sort=-modified_at&props=slug,title,metadata,type,";
 let projectsData
 
 async function fetchApi(apiUrl) {

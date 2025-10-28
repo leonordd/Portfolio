@@ -39,8 +39,10 @@ function normLocale(metaLocale) {
 // index.js — SUBSTITUI apenas esta função
 async function fetchApiList(locale) {
   const base =
-    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
-    `?read_key=${READ_KEY}&depth=1&props=slug,title,metadata,id,type&sort=-order`;
+    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` + `?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&`+
+    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,type,`;
+
+    //`?read_key=${READ_KEY}&depth=1&props=slug,title,metadata,id,type&sort=-order`;
 
   // 1) query aninhada (preferida)
   const qNested = encodeURIComponent(JSON.stringify({
