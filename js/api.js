@@ -44,7 +44,7 @@ function displayProjects(data) {
                 //console.log(project.metadata.carroussel);
     
                 //inicializa o carroussel
-                startCarousel(project.metadata.carroussel, project.title, link);
+                startCarousel(project.metadata.carroussel, project.metadata.project_name, link);
             }
 
             img_projects.onmouseout = function(){
