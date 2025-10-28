@@ -168,7 +168,7 @@ function displayProjects(data) {
     if (project.metadata.carroussel) {
       img_projects.addEventListener('mouseenter', () => {
         hoverTimer = setTimeout(() => {
-          startCarousel(project.metadata.carroussel, project.title, link);
+          startCarousel(project.metadata.carroussel, project.metadata.name, link);
         }, 120); // pequeno atraso evita hovers acidentais
       });
       img_projects.addEventListener('mouseleave', () => {

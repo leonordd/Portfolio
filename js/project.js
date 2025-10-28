@@ -120,8 +120,8 @@ function displayProject(data) {
     let text = document.getElementById('project_text');
     //console.log(text);
     
-    if (data.title !== null) {
-        title.innerText = data.title;
+    if (data.metadata.name !== null) {
+        title.innerText = data.metadata.name;
     } 
     
     if (data.metadata.content !== null) {
