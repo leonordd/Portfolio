@@ -37,20 +37,21 @@ function preserveLangOnLinks(lang) {
 
   anchors.forEach(a => {
     const href = a.getAttribute('href');
-    // Ignora links externos/anchors/mailto/tel
-    if (!href || href.startsWith('http') || href.startsWith('mailto:') ||
-        href.startsWith('tel:') || href.startsWith('#')) return;
+    // Ignora externos/anchors/mailto/tel
+    if (!href || href.startsWith('http') || href.startsWith('mailto:')
+        || href.startsWith('tel:') || href.startsWith('#')) return;
 
-    // Resolve o link relativo com base no <base>
+    // Resolve relativo à <base>
     const url = new URL(href, base);
 
-    // Garante que manténs o ?lang
+    // Garante ?lang
     url.searchParams.set('lang', lang);
 
-    // Escreve de volta sem perder o /Portfolio/
+    // Escreve de volta SEM perder /Portfolio/
     a.setAttribute('href', url.pathname + url.search + url.hash);
   });
 }
+
 
 
 

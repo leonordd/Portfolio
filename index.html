@@ -2,11 +2,23 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <script>
+        (function () {
+            // Define automaticamente a base dependendo do ambiente
+            var href = (location.hostname === 'leonordd.github.io')
+            ? '/Portfolio/'
+            : new URL('./', location.href).href;
+
+            var base = document.createElement('base');
+            base.setAttribute('href', href);
+            document.head.prepend(base);
+        })();
+    </script>
     <title>Homepage</title>
     <link rel="shortcut icon" type="img/png" href="./data/contacts/star.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/Portfolio/">
+    <!--<base href="/Portfolio/">-->
     <link href="css/geral.css" rel="stylesheet">
     <link href="css/homepage.css" rel="stylesheet">
 
@@ -82,13 +94,13 @@
         </nav>
     </main>
     <div class="box"></div>
+    <script src="./js/dic.js"></script>
+    <script src="./js/helper.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             preserveLangOnLinks(getLocale());
         });
     </script>
-     <script src="./js/dic.js"></script>
-    <script src="./js/helper.js"></script>
       <script src="./js/geral.js"></script>
     <script src="./js/carroussel_home.js"></script>
     <!--<script src ="js/index.js"></script>-->

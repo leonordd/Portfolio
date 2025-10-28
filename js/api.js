@@ -2,7 +2,7 @@
 const BUCKET = 'portfolio';
 const READ_KEY = '830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ';
 
-const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio/objects?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&sort=-modified_at&props=slug,title,metadata,type,";
+const PROJECTS_URL = "https://api.cosmicjs.com/v3/buckets/portfolio/objects?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&read_key=830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ&depth=1&sort=-modified_at&props=slug,title,metadata,id,type,";
 let projectsData
 
 async function fetchApi(apiUrl) {
@@ -33,7 +33,14 @@ function displayProjects(data) {
         //console.log(project_number); // Exibir o índice no console
 
         link.setAttribute('id', 'img' + project_number); // Definir o índice como ID
-        link.href = `project.html?id=${project.id}` //cria uma página em que o projeto é igual ao index
+        //link.href = `project.html?id=${project.id}` //cria uma página em que o projeto é igual ao index
+
+        const base = document.baseURI;               // respeita <base href="/Portfolio/">
+        const u = new URL('html/project.html', base);
+        u.searchParams.set('lang', getLocale());     // mantém a língua atual
+        u.searchParams.set('id', project.id);
+        link.href = u.pathname + u.search + u.hash;
+
         img_projects.setAttribute('src', project.metadata.cover_image.url); // Definir a imagem
 
         if(project.metadata.carroussel == null){

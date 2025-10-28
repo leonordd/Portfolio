@@ -39,8 +39,8 @@ function normLocale(metaLocale) {
 // index.js — SUBSTITUI apenas esta função
 async function fetchApiList(locale) {
   const base =
-    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` + `?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&`+
-    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,type,`;
+    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
+    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,id,type,`;
 
     //`?read_key=${READ_KEY}&depth=1&props=slug,title,metadata,id,type&sort=-order`;
 
@@ -143,14 +143,16 @@ function displayProjects(data) {
   data.forEach((project, index) => {
     const img_projects = document.createElement('img');
     const link = document.createElement('a');
-    const base = document.baseURI; // respeita <base href="/Portfolio/">
     link.classList.add('imgs', 'img-wrapper');
     link.id = 'img' + (index + 1);
 
+
+    const base = document.baseURI;
     const u = new URL('html/project.html', base);
-    u.searchParams.set('lang', getLocale());
+    u.searchParams.set('lang', getLocale()); // ou currentLocale
     u.searchParams.set('id', project.id);
-    link.href = u.toString();
+    //link.href = u.toString();
+    link.href = u.pathname + u.search + u.hash;
 
     // Covers mais eficientes
     img_projects.src = project.metadata.cover_image.url;

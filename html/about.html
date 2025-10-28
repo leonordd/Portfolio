@@ -2,13 +2,25 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <script>
+        (function () {
+            // Define automaticamente a base dependendo do ambiente
+            var href = (location.hostname === 'leonordd.github.io')
+            ? '/Portfolio/'
+            : new URL('./', location.href).href;
+
+            var base = document.createElement('base');
+            base.setAttribute('href', href);
+            document.head.prepend(base);
+        })();
+    </script>
     <title>About</title>
     <link rel="shortcut icon" type="img/png" href="./data/contacts/star.png">
 
     <meta name="viewport" content="width=device-width">
-     <base href="/Portfolio/">
-    <link href="./css/geral.css" rel="stylesheet">
-    <link href="./css/about.css" rel="stylesheet">
+    <!--<base href="/Portfolio/">-->
+    <link href="../css/geral.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
