@@ -141,7 +141,8 @@ function displayProjects(data) {
   }, { rootMargin: '200px' });
 
   data.forEach((project, index) => {
-    const img_projects = document.createElement('img');
+    if(project.metadata.index_page === false){
+      const img_projects = document.createElement('img');
     const link = document.createElement('a');
     link.classList.add('imgs', 'img-wrapper');
     link.id = 'img' + (index + 1);
@@ -183,7 +184,10 @@ function displayProjects(data) {
 
     link.appendChild(img_projects);
     container.appendChild(link);
+
+    }
   });
+    
 }
 
 
