@@ -2,10 +2,23 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <script>
+        (function () {
+            // Define automaticamente a base dependendo do ambiente
+            var href = (location.hostname === 'leonordd.github.io')
+            ? '/Portfolio/'
+            : new URL('./', location.href).href;
+
+            var base = document.createElement('base');
+            base.setAttribute('href', href);
+            document.head.prepend(base);
+        })();
+    </script>
     <title>Homepage</title>
-    <link rel="shortcut icon" type="img/png" href="data/contacts/star.png">
+    <link rel="shortcut icon" type="img/png" href="./data/contacts/star.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<base href="/Portfolio/">-->
     <link href="css/geral.css" rel="stylesheet">
     <link href="css/homepage.css" rel="stylesheet">
 
@@ -42,8 +55,8 @@
     
         <ul class="navegacao">
             <li><a href="index.html" id="work" data-i18n="projetos">PROJETOS</a></li>
-            <li><a href="about.html" id="about" data-i18n="sobre">SOBRE</a></li>
-            <li><a href="contacts.html" id="contacts" data-i18n="contactos">CONTACTOS</a></li>
+            <li><a href="html/about.html" id="about" data-i18n="sobre">SOBRE</a></li>
+            <li><a href="html/contacts.html" id="contacts" data-i18n="contactos">CONTACTOS</a></li>
         </ul>
         <ul class="redes">
             <li class="inline">
@@ -81,13 +94,18 @@
         </nav>
     </main>
     <div class="box"></div>
-     <script src="js/dic.js"></script>
-    <script src="js/helper.js"></script>
-      <script src="js/geral.js"></script>
-    <script src="js/carroussel_home.js"></script>
+    <script src="./js/dic.js"></script>
+    <script src="./js/helper.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            preserveLangOnLinks(getLocale());
+        });
+    </script>
+      <script src="./js/geral.js"></script>
+    <script src="./js/carroussel_home.js"></script>
     <!--<script src ="js/index.js"></script>-->
     <!--<script src ="js/api.js"></script>-->
-    <script src ="js/index.js"></script>
-    <script src="js/cursor.js"></script>
+    <script src ="./js/index.js"></script>
+    <script src="./js/cursor.js"></script>
 </body>
 </html>

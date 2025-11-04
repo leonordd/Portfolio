@@ -40,7 +40,9 @@ function normLocale(metaLocale) {
 async function fetchApiList(locale) {
   const base =
     `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
-    `?read_key=${READ_KEY}&depth=1&props=slug,title,metadata,id,type&sort=-order`;
+    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,id,type,`;
+
+    //`?read_key=${READ_KEY}&depth=1&props=slug,title,metadata,id,type&sort=-order`;
 
   // 1) query aninhada (preferida)
   const qNested = encodeURIComponent(JSON.stringify({
@@ -75,39 +77,6 @@ async function fetchApiList(locale) {
 }
 
 /*function displayProjects(data) {
-  let container = document.querySelector("#container");
-  container.innerHTML = '';
-
-  data.forEach((project, index) => {
-    let img_projects = document.createElement('img');
-    let link =  document.createElement('a');
-    link.classList.add('imgs', 'img-wrapper');
-    link.id = 'img' + (index + 1);
-
-    // >>> mantém a língua actual na navegação
-    const u = new URL('project.html', location.origin);
-    u.searchParams.set('lang', currentLocale);
-    u.searchParams.set('id', project.id);
-    link.href = u.toString();
-
-    img_projects.src = project.metadata.cover_image.url;
-
-    // carrossel (mantém a tua lógica)
-    if (project.metadata.carroussel) {
-      img_projects.onmouseover = function(){
-        startCarousel(project.metadata.carroussel, project.title, link);
-      };
-      img_projects.onmouseout = function(){
-        stopCarousel(link);
-      };
-    }
-
-    link.appendChild(img_projects);
-    container.appendChild(link);
-  });
-}*/
-
-function displayProjects(data) {
   const container = document.querySelector("#container");
   container.innerHTML = '';
 
@@ -139,15 +108,19 @@ function displayProjects(data) {
   }, { rootMargin: '200px' });
 
   data.forEach((project, index) => {
-    const img_projects = document.createElement('img');
+    if(project.metadata.index_page === true){
+      const img_projects = document.createElement('img');
     const link = document.createElement('a');
     link.classList.add('imgs', 'img-wrapper');
     link.id = 'img' + (index + 1);
 
-    const u = new URL('project.html', location.origin);
-    u.searchParams.set('lang', currentLocale);
+
+    const base = document.baseURI;
+    const u = new URL('html/project.html', base);
+    u.searchParams.set('lang', getLocale()); // ou currentLocale
     u.searchParams.set('id', project.id);
-    link.href = u.toString();
+    //link.href = u.toString();
+    link.href = u.pathname + u.search + u.hash;
 
     // Covers mais eficientes
     img_projects.src = project.metadata.cover_image.url;
@@ -167,7 +140,7 @@ function displayProjects(data) {
     if (project.metadata.carroussel) {
       img_projects.addEventListener('mouseenter', () => {
         hoverTimer = setTimeout(() => {
-          startCarousel(project.metadata.carroussel, project.title, link);
+          startCarousel(project.metadata.carroussel, project.metadata.project_name, link);
         }, 120); // pequeno atraso evita hovers acidentais
       });
       img_projects.addEventListener('mouseleave', () => {
@@ -178,9 +151,48 @@ function displayProjects(data) {
 
     link.appendChild(img_projects);
     container.appendChild(link);
+
+    }
+  });
+    
+}*/
+
+function displayProjects(data) {
+  const container = document.querySelector("#container");
+  container.innerHTML = '';
+
+  // Filtra antes de desenhar
+  const visibleProjects = data.filter(p => p.metadata?.index_page === true);
+
+  visibleProjects.forEach((project, index) => {
+    const img_projects = document.createElement('img');
+    const link = document.createElement('a');
+    link.classList.add('imgs', 'img-wrapper');
+    link.id = 'img' + (index + 1);
+
+    const base = document.baseURI;
+    const u = new URL('html/project.html', base);
+    u.searchParams.set('lang', getLocale());
+    u.searchParams.set('id', project.id);
+    link.href = u.pathname + u.search + u.hash;
+
+    img_projects.src = project.metadata.cover_image.url;
+    img_projects.loading = 'lazy';
+    img_projects.decoding = 'async';
+    img_projects.fetchPriority = index < 4 ? 'high' : 'low';
+
+    // carrossel (mantendo a tua lógica)
+    if (project.metadata.carroussel) {
+      img_projects.addEventListener('mouseenter', () => {
+        startCarousel(project.metadata.carroussel, project.metadata.project_name, link);
+      });
+      img_projects.addEventListener('mouseleave', () => stopCarousel(link));
+    }
+
+    link.appendChild(img_projects);
+    container.appendChild(link);
   });
 }
-
 
 // —— Botões PT / ENG na home ——
 const btnPT = document.getElementById('lang_pt');

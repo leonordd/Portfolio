@@ -1,7 +1,6 @@
 const BUCKET = 'portfolio'; // substitui pelo teu bucket
 const READ_KEY = '830isr5EuSuUw0n4N6RjNCuW1Bn9S4YRyjNTJiBn34HdXeURBQ';
 
-
 //API HOMEPAGE
 const urlParams = new URLSearchParams(window.location.search);
 const projectId = urlParams.get('id');
@@ -120,8 +119,8 @@ function displayProject(data) {
     let text = document.getElementById('project_text');
     //console.log(text);
     
-    if (data.title !== null) {
-        title.innerText = data.title;
+    if (data.metadata.project_name !== null) {
+        title.innerText = data.metadata.project_name;
     } 
     
     if (data.metadata.content !== null) {
@@ -187,7 +186,8 @@ function displayProject(data) {
     // img
     const imagem = document.createElement('img')
     imagem.alt = 'external website link';
-    imagem.src = 'data/icons/external_link.svg';
+    imagem.src = '../data/icons/external_link.svg';
+    //imagem.src=  new URL('data/icons/external_link.svg', document.baseURI).href;
     imagem.width = '24';
     imagem.height = '24';
 
@@ -292,8 +292,13 @@ function normLocale(metaLocale) {
 async function fetchAltByTranslationKey(translationKey, localeWanted, objType) {
   if (!translationKey) return null;
 
-  const base = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
-               `?read_key=${READ_KEY}&depth=1&props=slug,title,content,metadata,id,type`;
+  /*const base = `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` +
+               `?read_key=${READ_KEY}&depth=1&props=slug,title,content,metadata,id,type`;*/
+  
+
+  const base =
+    `https://api.cosmicjs.com/v3/buckets/${BUCKET}/objects` + `?pretty=true&query=%7B%22type%22:%22works%22%7D&limit=10&skip=0&`+
+    `?read_key=${READ_KEY}&depth=1&sort=-modified_at&props=slug,title,metadata,type,`;
 
   // tentativas de query (mais robustas, por ordem)
   const tries = [
