@@ -80,6 +80,8 @@
     .box.show img { transition: opacity 220ms ease; }
 }
 
+/** Mobile Layout 
+*/
 @media screen and (max-width: 1000px){ 
 
     #container{
@@ -126,7 +128,7 @@
     
     #img5{ /*FOLHA*/
         grid-column:6/8;
-        grid-row:11/13;
+        grid-row:9/12;
     }
     
     #img6{ /*CLOE*/
