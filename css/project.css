@@ -310,8 +310,6 @@ footer{
         bottom: 8.05%;
         z-index: 5;
         transform: translateX(50%);
-
-        /*6.05% 10.4%*/
     }
     #top_button_div svg{
         width: 30px;
@@ -373,7 +371,6 @@ footer{
 
    #project_head{
         position: relative;
-        top: -60px;
     }
 
     /*Cruz para voltar atrás*/
@@ -410,6 +407,7 @@ footer{
         white-space: nowrap;
         z-index: 1;
     }
+
 }
 
 
