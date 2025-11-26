@@ -72,38 +72,6 @@ h1{
     position:relative;
 }
 
-@media screen and (min-width: 1000px){
-    #language {
-        position:fixed;
-        left:3%;
-        top:4%;
-        z-index: 5;
-        margin-left: 10px;
-    }
-
-    h1{
-        font-size:2.8rem;
-    }
-}
-
-
-@media screen and (max-width: 1000px){
-    #language {
-        position:fixed;
-        left:2.32%;
-        bottom:20%;
-        margin-left:10px;
-    }
-
-    h1{
-        font-size:2rem;
-        width:80%;
-    }
-} 
-
-
-
-
 @keyframes rotation {
    to {
       transform: rotate(360deg);
@@ -195,7 +163,37 @@ ul{
     border: 1px solid var(--branco);
 }
 
+/*Desktop*/
+@media screen and (min-width: 1000px){
+    #language {
+        position:fixed;
+        left:3%;
+        top:4%;
+        z-index: 5;
+        margin-left: 10px;
+    }
 
+    h1{
+        font-size:2.8rem;
+    }
+}
+
+/*Tablet*/
+@media screen and (max-width: 1000px){
+    #language {
+        position:fixed;
+        right:2.32%;
+        bottom:3%;
+        margin-left:10px;
+    }
+
+    h1{
+        font-size:2rem;
+        width:80%;
+    }
+} 
+
+/*Telemóvel*/
 @media screen and (max-width: 600px){
 
     nav {
@@ -222,8 +220,8 @@ ul{
 
     #language {
         position:fixed;
-        left:2.32%;
-        bottom:18%;
+        right:2.32%;
+        bottom:3%;
         margin-left:15px;
     }
 
